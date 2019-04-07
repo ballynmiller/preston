@@ -1,4 +1,4 @@
-# Preston &middot; ![Node >=0.10.0](https://img.shields.io/node/v/react.svg) ![MIT license](https://img.shields.io/github/license/ballynmiller/preston.svg)
+# Preston &middot; ![Node >=0.10.0](https://img.shields.io/node/v/react.svg) ![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 Preston is a javascript application that creates a digital keyboard with logging. 
 * It allows users to input a series of keys and watch them being played.
