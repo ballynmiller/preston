@@ -3,26 +3,29 @@ import { mount } from 'enzyme';
 
 import App from '../App';
 
+jest.useFakeTimers();
+
 describe("<App />", ()=> {
     it("should render piano, logger, input field, and a play button", () => {
         const app = mount(<App />);
-        let testValue = "C,D,G";
-        let testArray = testValue.split(",");
+        let inputValue = "C,D,G";
+        let historyArray = ["C","D","E","F","G","A","B", ...inputValue.split(",")];
 
-        // find input field and populate with text, verify state updating
-        app.find("input[type='text']").simulate("change", {target: {value: testValue}});
-        expect(app.state('playOrder')).toBe(testValue);
+        app.find("div.keys").forEach((key) => key.simulate("click"));
+        app.find("span").forEach((elm, index)=> {
+            expect(elm.props().children[0]).toBe(historyArray[index]);
+        });
+
+        app.find("input[type='text']").simulate("change", {target: {value: inputValue}});
+        expect(app.find("input[type='text']").props().value).toBe(inputValue);
 
         app.find("button").simulate("click");
-        expect(app.state('history').length).toBe(3);
-        
-        app.state('history').forEach((str, index) => {
-            expect(str).toBe(testArray[index]);
+        jest.runAllTimers();
+
+        app.find("span").forEach((elm, index)=> {
+            expect(elm.props().children[0]).toBe(historyArray[index]);
         });
-        
+
         app.unmount();
     });
 })
-
-
-
