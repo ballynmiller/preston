@@ -29,6 +29,3 @@ describe("<App />", ()=> {
         app.unmount();
     });
 })
-
-
-

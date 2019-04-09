@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Piano from './components/Piano';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div>
