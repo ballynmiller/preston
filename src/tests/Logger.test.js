@@ -14,7 +14,9 @@ describe("Logger with entries", ()=> {
         const history = ["C", "D", "E", "F", "G", "A", "B"];
         const logger = mount(<Logger history={history}/>);
         expect(logger.prop("history")).toBe(history);
-        expect(logger.find("p").length).toBe(7);
+        logger.find("span").forEach((elm, index) => {
+            expect(elm.props().children[0]).toBe(history[index]);
+        });
 
         logger.unmount();
     });
