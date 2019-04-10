@@ -10,6 +10,9 @@ class App extends React.Component {
       <ErrorBoundary>
         <h1 id="appTitle">Preston</h1>
         <Piano />
+        <div style={{ marginTop: 30}}>
+          <Piano />
+        </div>
       </ErrorBoundary>
     );
   }
