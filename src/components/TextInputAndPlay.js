@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './TextInputAndPlay.scss';
+
 const TextInputAndPlay = (props) => {
     return (
-        <div>
+        <div className="tip-container">
             <input type="text" onChange={props.onChange} value={props.playOrder}/>
             <button disabled={props.isPlaying} type="submit" onClick={props.onClick}>Play</button>
         </div>

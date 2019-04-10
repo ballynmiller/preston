@@ -11,8 +11,8 @@ describe("<App />", ()=> {
         let inputValue = "C,D,G";
         let historyArray = ["C","D","E","F","G","A","B", ...inputValue.split(",")];
 
-        app.find("div.keys").forEach((key) => key.simulate("click"));
-        app.find("span").forEach((elm, index)=> {
+        app.find("div.key").forEach((key) => key.simulate("click"));
+        app.find("span.history").forEach((elm, index)=> {
             expect(elm.props().children[0]).toBe(historyArray[index]);
         });
 
@@ -22,13 +22,13 @@ describe("<App />", ()=> {
         app.find("button").simulate("click");
         jest.runAllTimers();
 
-        app.find("span").forEach((elm, index)=> {
+        app.find("span.history").forEach((elm, index)=> {
             expect(elm.props().children[0]).toBe(historyArray[index]);
         });
 
         app.unmount();
     });
-})
+});
 
 describe("<App />", ()=> {
     it("test with input that doesn't match a key", () => {
@@ -42,4 +42,4 @@ describe("<App />", ()=> {
 
         app.unmount();
     });
-})
+});

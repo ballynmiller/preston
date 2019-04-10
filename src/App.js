@@ -2,14 +2,15 @@ import React from 'react';
 import ErrorBoundary from './components/ErrorBoundary';
 import Piano from './components/Piano';
 
+import './App.scss';
+
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <ErrorBoundary>
-          <Piano />
-        </ErrorBoundary>
-      </div>
+      <ErrorBoundary>
+        <h1 id="appTitle">Preston</h1>
+        <Piano />
+      </ErrorBoundary>
     );
   }
 }

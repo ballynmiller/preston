@@ -1,0 +1,19 @@
+.logger{
+    background-color: #ccc;
+    width: 550px;
+    padding: 27px;
+    span {
+        border-radius: 15px;
+        display: inline-block;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    span:nth-child(odd){
+        background-color: #cc0;
+    }
+
+    span:nth-child(even) {
+        background-color: #00FFFF;
+    }
+}

@@ -2,10 +2,12 @@ import React from 'react';
 import PropType from 'prop-types';
 import uuid4 from 'uuid/v4';
 
+import './Logger.scss';
+
 const Logger = (props) => {
     return (
-        <div>
-            {props.history.map((entry, index) => <span key={uuid4()}>{entry}</span>)}
+        <div className="logger">
+            {props.history.map((entry, index) => <span className="history" key={uuid4()}>{entry}</span>)}
         </div>
     );
 }
