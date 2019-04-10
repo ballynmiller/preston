@@ -3,6 +3,7 @@ import React from 'react';
 import Keys from './Keys';
 import Logger from './Logger';
 import TextInputAndPlay from './TextInputAndPlay';
+import './Piano.scss';
 
 class Piano extends React.Component {
     constructor(props){
@@ -11,30 +12,62 @@ class Piano extends React.Component {
             history: [],
             keys: [
                 {
+                    color: "white",
                     note: "C",
                     isHighlighted: false
                 },
                 {
+                    color: "black",
+                    note: null,
+                    isHighlighted: false
+                },
+                {
+                    color: "white",
                     note: "D",
                     isHighlighted: false
                 },
                 {
+                    color: "black",
+                    note: null,
+                    isHighlighted: false
+                },
+                {
+                    color: "white",
                     note: "E",
                     isHighlighted: false
                 },
                 {
+                    color: "white",
                     note: "F",
                     isHighlighted: false
                 },
                 {
+                    color: "black",
+                    note: null,
+                    isHighlighted: false
+                },
+                {
+                    color: "white",
                     note: "G",
                     isHighlighted: false
                 },
                 {
-                    note: "A",
+                    color: "black",
+                    note: null,
                     isHighlighted: false
                 },
                 {
+                    "color": "white",
+                    note: "A",
+                    isHighlighted: false
+                },
+                                {
+                    color: "black",
+                    note: null,
+                    isHighlighted: false
+                },
+                {
+                    color: "white",
                     note: "B",
                     isHighlighted: false
                 },
@@ -45,7 +78,8 @@ class Piano extends React.Component {
     }
 
     handleKeyClick = (e) => {
-        let note = e.target.innerHTML;
+        if(!e.target.children.length) return;
+        let note = e.target.children[0].innerHTML;
         this.setState({history: [...this.state.history, note]});
         this.toggleHighlighted(note);
         setTimeout(() => {
@@ -72,7 +106,7 @@ class Piano extends React.Component {
                 this.setState({
                     history: [...this.state.history, firstNote.toUpperCase()],
                 });
-            } else {}
+            }
             this.setState({playOrder: notes.toString()});
             if(notes.length > 0){ 
                 this.playNotes();
@@ -83,7 +117,7 @@ class Piano extends React.Component {
     toggleHighlighted = note => {
         let matchFound = false;
         this.setState({keys: this.state.keys.map(key => {
-            if(key.note.toLocaleLowerCase() === note.toLocaleLowerCase()) {
+            if(key.note !== null && key.note.toLowerCase() === note.toLowerCase()) {
                 key.isHighlighted = !key.isHighlighted;
                 matchFound = true;
             }
@@ -95,8 +129,10 @@ class Piano extends React.Component {
 
     render(){ 
         return (
-            <div>
-                <Keys keys={this.state.keys} onClick={this.handleKeyClick} />
+            <div className="pianoContainer">
+                <div className="piano">
+                    <Keys keys={this.state.keys} onClick={this.handleKeyClick} />
+                </div>
                 <Logger history={this.state.history} />
                 <TextInputAndPlay playOrder={this.state.playOrder} isPlaying={this.state.isPlaying} onChange={this.handlePlayOrderChange} onClick={this.handlePlayClick}/>
             </div>

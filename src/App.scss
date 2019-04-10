@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Yellowtail');
+
+*{
+	padding: 0;
+	margin: 0;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+	align-items:      center;
+	background-color: #61615f;
+	display:          flex;
+	height:           100%;
+	margin:           auto;
+	justify-content:  center;
+}
+
+#appTitle {
+	color: #ccc;
+	font-family: 'Yellowtail', cursive;
+	font-size: 6em;
+	text-align: center;
+	text-shadow: 2px 2px #383736;
+}
