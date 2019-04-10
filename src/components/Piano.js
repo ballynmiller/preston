@@ -65,13 +65,15 @@ class Piano extends React.Component {
     playNotes = () =>{
         let notes = this.state.playOrder.split(',');
         let firstNote = notes.shift();
-        this.toggleHighlighted(firstNote);
+        let matchFound = this.toggleHighlighted(firstNote);
         setTimeout(() => {
-            this.toggleHighlighted(firstNote);
-            this.setState({
-                history: [...this.state.history, firstNote.toUpperCase()],
-                playOrder: notes.toString()
-            });
+            if(matchFound) {
+                this.toggleHighlighted(firstNote);
+                this.setState({
+                    history: [...this.state.history, firstNote.toUpperCase()],
+                });
+            } else {}
+            this.setState({playOrder: notes.toString()});
             if(notes.length > 0){ 
                 this.playNotes();
             } else this.setState({isPlaying: false}); 
@@ -79,10 +81,16 @@ class Piano extends React.Component {
     };
 
     toggleHighlighted = note => {
+        let matchFound = false;
         this.setState({keys: this.state.keys.map(key => {
-            if(key.note.toLocaleLowerCase() === note.toLocaleLowerCase()) key.isHighlighted = !key.isHighlighted;
+            if(key.note.toLocaleLowerCase() === note.toLocaleLowerCase()) {
+                key.isHighlighted = !key.isHighlighted;
+                matchFound = true;
+            }
             return key;
         })});
+
+        return matchFound;
     }
 
     render(){ 
