@@ -1,11 +1,14 @@
 import React from 'react';
+import ErrorBoundary from './components/ErrorBoundary';
 import Piano from './components/Piano';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Piano />
+        <ErrorBoundary>
+          <Piano />
+        </ErrorBoundary>
       </div>
     );
   }

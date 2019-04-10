@@ -29,3 +29,17 @@ describe("<App />", ()=> {
         app.unmount();
     });
 })
+
+describe("<App />", ()=> {
+    it("test with input that doesn't match a key", () => {
+        const app = mount(<App />);
+
+        app.find("input[type='text']").simulate("change", {target: {value: "[]"}});
+        app.find("button").simulate("click");
+        jest.runAllTimers();
+
+        expect(app.find("span").children().length).toBe(0);
+
+        app.unmount();
+    });
+})
