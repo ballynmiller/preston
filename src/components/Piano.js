@@ -100,14 +100,14 @@ class Piano extends React.Component {
         let notes = this.state.playOrder.split(',');
         let firstNote = notes.shift();
         let matchFound = this.toggleHighlighted(firstNote);
+        if(matchFound){
+            this.setState({
+                history: [...this.state.history, firstNote.toUpperCase()],
+                playOrder: notes.toString()
+            });
+        }
         setTimeout(() => {
-            if(matchFound) {
-                this.toggleHighlighted(firstNote);
-                this.setState({
-                    history: [...this.state.history, firstNote.toUpperCase()],
-                });
-            }
-            this.setState({playOrder: notes.toString()});
+            this.toggleHighlighted(firstNote);
             if(notes.length > 0){ 
                 this.playNotes();
             } else this.setState({isPlaying: false}); 
